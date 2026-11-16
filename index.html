@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eef1f2">
+<title>Corsi per serramentisti | AmbrosiPartner</title>
+<meta name="description" content="Corsi pratici su fisco, norme, tecnica e vendita per chi lavora con serramenti, pergole, vetrate e porte. 21 corsi dell'Accademia AmbrosiPartner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* colori del marchio AmbrosiPartner */
+  --bgc:#eaf1f6; --paper:#ffffff; --ink:#012f46; --text:#22394a; --mut:#51636e; --line:#012f461f;
+  --pri:#00679a; --pri-soft:#e1eef5; --cyan:#0095c8; --sky:#8fcbe6; --sun:#f7b500; --sun-soft:#fff4d1;
+  --disp:"Barlow Condensed","Inter",system-ui,sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:18px; --ease:cubic-bezier(.2,.8,.2,1); --pad:clamp(20px,4vw,56px);
+  --shadow:0 1px 2px rgba(15,27,36,.05),0 12px 32px -12px rgba(15,27,36,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{background:var(--bgc);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;text-align:inherit;cursor:pointer}
+ul,ol{list-style:none}
+::selection{background:var(--pri);color:#fff}
+:focus-visible{outline:2px solid var(--pri);outline-offset:3px;border-radius:6px}
+
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block;pointer-events:none}
+main,footer{position:relative;z-index:1}
+
+/* ---------- etichette della vista esplosa ---------- */
+#labels{display:none;position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0}   /* etichette dei componenti: spente */
+#labels span{position:absolute;left:0;top:0;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;background:rgba(255,255,255,.9);padding:5px 12px 5px 10px;border-radius:99px;box-shadow:var(--shadow);will-change:transform}
+#labels span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sun)}
+
+/* ---------- caricamento ---------- */
+#loader{position:fixed;inset:0;background:var(--bgc);z-index:200;display:grid;place-items:center;transition:opacity .7s,visibility .7s}
+#loader.done{opacity:0;visibility:hidden}
+#loader div{display:grid;gap:18px;justify-items:center}
+#loader svg{width:54px;height:72px}
+#loader rect{fill:none;stroke:var(--ink);stroke-width:3;stroke-dasharray:240;stroke-dashoffset:240;animation:draw 1.3s var(--ease) forwards}
+#loader line{stroke:var(--ink);stroke-width:3;stroke-dasharray:70;stroke-dashoffset:70;animation:draw 1s var(--ease) .35s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+#loader p{font-family:var(--disp);font-weight:600;font-size:16px;letter-spacing:-.01em;color:var(--mut)}
+
+/* ---------- intestazione ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:80;padding:12px var(--pad);transition:transform .5s var(--ease)}
+.hbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 8px 8px 20px;background:rgba(255,255,255,.78);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid rgba(255,255,255,.9);border-radius:99px;box-shadow:var(--shadow)}
+.logo{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:-.03em}
+.logo span{font-weight:400;color:var(--mut)}
+header nav{display:flex;gap:6px;align-items:center}
+.hlink{font-size:15px;font-weight:500;padding:10px 14px;border-radius:99px;transition:background .25s,color .25s;min-height:44px;display:inline-flex;align-items:center}
+.hlink:hover{background:var(--pri-soft);color:var(--pri)}
+.hcta{font-size:15px;font-weight:600;padding:10px 20px;border-radius:99px;background:var(--ink);color:#fff;min-height:44px;display:inline-flex;align-items:center;transition:background .25s}
+.hcta:hover{background:var(--pri)}
+.hmenu{width:44px;height:44px;border-radius:50%;display:none;place-items:center;border:1px solid var(--line)}
+.hmenu i{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:background .2s}
+.hmenu i::before,.hmenu i::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s var(--ease)}
+.hmenu i::before{top:-6px}.hmenu i::after{top:6px}
+.hmenu[aria-expanded=true] i{background:transparent}
+.hmenu[aria-expanded=true] i::before{transform:translateY(6px) rotate(45deg)}
+.hmenu[aria-expanded=true] i::after{transform:translateY(-6px) rotate(-45deg)}
+.prog{position:fixed;left:0;top:0;height:3px;width:100%;background:var(--pri);z-index:81;transform-origin:0 50%;transform:scaleX(0)}
+
+#overlay{position:fixed;inset:0;background:var(--bgc);z-index:70;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:90px var(--pad) 32px;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+#overlay.open{opacity:1;visibility:visible}
+#overlay a{font-family:var(--disp);font-weight:600;font-size:clamp(30px,8vw,48px);letter-spacing:-.03em;line-height:1.2;padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;transform:translateY(18px);opacity:0;transition:transform .5s var(--ease),opacity .5s}
+#overlay.open a{transform:none;opacity:1}
+#overlay a:nth-child(2){transition-delay:.04s}#overlay a:nth-child(3){transition-delay:.08s}#overlay a:nth-child(4){transition-delay:.12s}#overlay a:nth-child(5){transition-delay:.16s}#overlay a:nth-child(6){transition-delay:.2s}
+#overlay a small{font-family:var(--body);font-size:14px;color:var(--mut);font-weight:500}
+#overlay .tel{font-family:var(--body);font-size:18px;font-weight:600;border:0;margin-top:18px;color:var(--pri)}
+
+/* ---------- bottoni ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-weight:600;font-size:16px;padding:8px 8px 8px 24px;min-height:54px;border-radius:99px;background:var(--ink);color:#fff;transition:background .3s,transform .4s var(--ease),box-shadow .3s;will-change:transform}
+.btn .ar{width:38px;height:38px;border-radius:50%;background:var(--sun);color:var(--ink);display:grid;place-items:center;font-size:17px;transition:transform .4s var(--ease)}
+.btn:hover{background:var(--pri);box-shadow:0 14px 30px -12px rgba(11,79,108,.6)}
+.btn:hover .ar{transform:rotate(-45deg)}
+.btn.sec{background:rgba(255,255,255,.75);color:var(--ink);border:1px solid var(--line);padding:8px 24px;backdrop-filter:blur(8px)}
+.btn.sec:hover{background:#fff;border-color:var(--ink);box-shadow:none}
+
+/* ---------- tipografia ---------- */
+section{position:relative;padding:clamp(80px,11vw,150px) var(--pad)}
+.tag{display:inline-flex;gap:10px;align-items:center;font-size:14px;font-weight:600;color:var(--pri);margin-bottom:22px}
+.tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sun)}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-.035em;font-weight:600}
+h2{font-size:clamp(34px,5vw,68px);line-height:1.05;max-width:16ch}
+.sub{color:var(--mut);max-width:48ch;margin-top:20px;font-size:clamp(17px,1.4vw,19px)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}
+.w>span{display:inline-block;transform:translateY(110%);transition:transform .9s cubic-bezier(.2,.9,.2,1);transition-delay:var(--d,0s)}
+.in .w>span,.w.in>span{transform:none}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.stars{color:var(--sun);letter-spacing:.12em}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px var(--pad) 80px;position:relative}
+.hero-in{max-width:60vw}
+h1{font-size:clamp(42px,6.3vw,96px);line-height:1;max-width:11ch}
+h1 em{font-style:normal;color:var(--pri)}
+.claim{max-width:44ch;margin-top:26px;color:var(--mut);font-size:clamp(17px,1.45vw,20px)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.note{display:flex;gap:10px;align-items:center;color:var(--mut);font-size:15px;margin-top:18px}
+.note::before{content:"✓";width:22px;height:22px;border-radius:50%;background:var(--pri-soft);color:var(--pri);display:grid;place-items:center;font-size:13px;font-weight:700;flex:none}
+.modes{position:absolute;right:var(--pad);bottom:44px;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.modes p{font-size:14px;font-weight:500;color:var(--mut)}
+.seg{display:flex;padding:5px;background:rgba(255,255,255,.8);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);border-radius:99px;box-shadow:var(--shadow)}
+.seg button{font-size:14px;font-weight:600;padding:9px 16px;min-height:40px;border-radius:99px;color:var(--mut);transition:background .3s,color .3s}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+.scroll{position:absolute;left:var(--pad);bottom:44px;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:var(--mut)}
+.scroll i{width:1px;height:40px;background:var(--line);position:relative;overflow:hidden}
+.scroll i::after{content:"";position:absolute;left:0;top:0;width:1px;height:16px;background:var(--ink);animation:drip 1.8s var(--ease) infinite}
+@keyframes drip{from{transform:translateY(-16px)}to{transform:translateY(40px)}}
+
+/* ---------- numeri ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 var(--pad);position:relative;z-index:1}
+.stat{background:var(--paper);border-radius:var(--r);padding:26px 26px 28px;box-shadow:var(--shadow)}
+.stat strong{display:block;font-family:var(--disp);font-weight:600;font-size:clamp(40px,4.6vw,72px);line-height:1.05;letter-spacing:-.04em;color:var(--pri)}
+.stat p{color:var(--mut);font-size:15px;line-height:1.45;margin-top:8px;max-width:24ch}
+.stat cite{display:block;font-style:normal;font-size:13px;color:var(--mut);margin-top:8px}
+.stat.hl{background:var(--ink);color:#fff}.stat.hl strong{color:#fff}.stat.hl p{color:rgba(255,255,255,.86)}.stat.hl cite{color:rgba(255,255,255,.66)}
+
+/* ---------- perché: orizzontale ---------- */
+.pin{padding:0}
+.pin-in{padding:clamp(80px,11vw,150px) 0 40px}
+.pin-head{padding:0 var(--pad);max-width:900px}
+.track{display:flex;gap:18px;padding:40px var(--pad) 26px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.pn{flex:0 0 min(84vw,440px);scroll-snap-align:center;background:var(--paper);border-radius:var(--r);padding:28px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:360px;position:relative;overflow:hidden}
+.pn .num{font-family:var(--disp);font-weight:600;font-size:15px;color:var(--pri);background:var(--pri-soft);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;letter-spacing:0}
+.pn h3{font-size:clamp(24px,2.2vw,30px);line-height:1.12;margin-top:22px;max-width:15ch}
+.pn p{color:var(--mut);margin-top:12px;font-size:16px}
+.pn blockquote{margin-top:auto;padding-top:22px;font-size:16px;line-height:1.5;font-weight:500}
+.pn blockquote::before{content:"";display:block;width:36px;height:3px;border-radius:3px;background:var(--sun);margin-bottom:14px}
+.pn cite{display:block;font-style:normal;font-weight:400;color:var(--mut);font-size:14px;margin-top:8px}
+.pin-bar{height:3px;background:var(--line);border-radius:3px;margin:0 var(--pad);overflow:hidden;display:none}
+.pin-bar i{display:block;height:100%;background:var(--pri);transform-origin:0 50%;transform:scaleX(0)}
+.swipe{padding:0 var(--pad);font-size:14px;color:var(--mut);font-weight:500}
+@media(min-width:901px){
+  /* su schermi larghi le quattro schede stanno tutte in vista: niente scorrimento */
+  .track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;scroll-snap-type:none}
+  .pn{min-height:300px}
+  .swipe{display:none}
+  .pin-head{max-width:min(900px,56vw)}
+  .pin-head h2{max-width:22ch}
+}
+
+@media(min-width:1180px){.track{grid-template-columns:repeat(4,minmax(0,1fr))}.pn{min-height:340px}}
+
+/* ---------- fascia ---------- */
+.band{overflow:hidden;padding:10px 0 0;position:relative;z-index:1}
+.band div{white-space:nowrap;font-family:var(--disp);font-weight:700;font-size:clamp(54px,11vw,170px);line-height:1.1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px rgba(15,27,36,.2);will-change:transform}
+.band em{font-style:normal;-webkit-text-stroke:0;color:var(--sun);margin:0 .22em;font-size:.5em;vertical-align:middle}
+
+/* ---------- corsi ---------- */
+.cat{display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.rail{position:sticky;top:96px}
+.rail h2{font-size:clamp(32px,3.8vw,54px)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.fl{font-size:15px;font-weight:600;padding:10px 16px;min-height:44px;border-radius:99px;background:rgba(255,255,255,.8);border:1px solid var(--line);color:var(--ink);transition:background .25s,color .25s,border-color .25s;display:inline-flex;align-items:center;gap:8px}
+.fl sup{font-size:12px;font-weight:600;color:var(--mut);line-height:1}
+.fl:hover{border-color:var(--ink)}
+.fl[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.fl[aria-pressed=true] sup{color:rgba(255,255,255,.75)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:14px;perspective:1200px}
+.card{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;position:relative;display:flex;flex-direction:column;min-height:206px;padding:20px;background:var(--paper);border:1.5px solid transparent;border-radius:var(--r);box-shadow:var(--shadow);transform:rotateX(var(--rx)) rotateY(var(--ry));transition:transform .4s var(--ease),border-color .3s,background .3s,box-shadow .3s;overflow:hidden;width:100%}
+.card[hidden]{display:none}
+.card.pop{animation:pop .6s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes pop{from{opacity:0;transform:translateY(22px) scale(.96)}}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(11,79,108,.09),transparent 65%);opacity:0;transition:opacity .3s;pointer-events:none}
+@media(hover:hover){.card:hover{box-shadow:0 2px 4px rgba(15,27,36,.06),0 24px 44px -16px rgba(15,27,36,.3)}.card:hover::before{opacity:1}}
+.c-top{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;color:var(--mut)}
+.c-top b{font-family:var(--disp);font-weight:600;color:var(--pri)}
+.c-t{font-family:var(--disp);font-weight:600;font-size:23px;line-height:1.14;letter-spacing:-.03em;margin-top:16px}
+.c-d{color:var(--mut);font-size:15px;line-height:1.45;margin-top:8px}
+.c-add{margin-top:auto;padding-top:16px;font-size:14px;font-weight:600;color:var(--pri);display:flex;align-items:center;gap:10px}
+.c-add i{font-style:normal;width:26px;height:26px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-size:15px;line-height:1;transition:background .3s,color .3s,transform .4s var(--ease);flex:none}
+.card[aria-pressed=true]{border-color:var(--pri);background:var(--pri-soft)}
+.card[aria-pressed=true] .c-add i{background:var(--pri);border-color:var(--pri);color:#fff;transform:rotate(360deg)}
+
+/* ---------- recensioni ---------- */
+.rev-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;max-width:min(880px,62vw)}
+.score{display:flex;align-items:center;gap:16px;background:var(--paper);border-radius:var(--r);padding:16px 22px;box-shadow:var(--shadow)}
+.score strong{font-family:var(--disp);font-weight:600;font-size:54px;line-height:1;letter-spacing:-.04em}
+.score p{font-size:14px;color:var(--mut);line-height:1.45}
+.revs{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:44px var(--pad) 30px;margin:0 calc(var(--pad)*-1);-webkit-overflow-scrolling:touch}
+.revs::-webkit-scrollbar{display:none}
+.rev{flex:0 0 min(84vw,460px);scroll-snap-align:center;background:var(--paper);border-radius:var(--r);padding:28px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px;min-height:290px;will-change:transform}
+.rev .q{font-size:17px;line-height:1.55}
+.rev footer{margin-top:auto;padding:16px 0 0;border-top:1px solid var(--line);font-size:14px;color:var(--mut);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.rev footer b{color:var(--ink);font-weight:600}
+.cf-nav{display:flex;align-items:center;gap:12px}
+.cf-nav button{width:48px;height:48px;border-radius:50%;background:var(--paper);box-shadow:var(--shadow);display:grid;place-items:center;font-size:18px;transition:background .25s,color .25s,transform .3s var(--ease)}
+.cf-nav button:hover{background:var(--ink);color:#fff}
+.cf-nav button:active{transform:scale(.92)}
+.cf-nav span{font-family:var(--disp);font-weight:600;font-size:16px;color:var(--mut);min-width:4.2em;text-align:center}
+
+/* ---------- team e domande: fisarmonica ---------- */
+.two{display:grid;grid-template-columns:minmax(0,58%) minmax(0,1fr);gap:clamp(24px,4vw,64px)}
+.two.flip{grid-template-columns:minmax(0,1fr) minmax(0,58%)}
+.bigq{font-family:var(--disp);font-weight:500;font-size:clamp(24px,2.7vw,38px);line-height:1.2;letter-spacing:-.03em;margin:44px 0 12px;max-width:24ch;padding-left:22px;border-left:3px solid var(--sun)}
+.by{color:var(--mut);font-size:15px;padding-left:25px}.by b{color:var(--ink);font-weight:600}
+.acc{margin-top:40px;display:grid;gap:10px}
+.ai{background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .3s}
+.ai>button{width:100%;display:grid;grid-template-columns:auto 1fr 34px;gap:16px;align-items:center;padding:18px 20px;min-height:64px}
+.ai .n{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--pri);background:var(--pri-soft);width:36px;height:36px;border-radius:50%;display:grid;place-items:center}
+.ai .role{display:block;font-size:13px;font-weight:600;color:var(--pri);margin-bottom:2px}
+.ai .t{font-family:var(--disp);font-weight:600;font-size:clamp(19px,1.7vw,23px);letter-spacing:-.025em;line-height:1.2}
+.ai.q .t{font-family:var(--body);font-weight:600;font-size:17px;letter-spacing:0;line-height:1.4}
+.ai .x{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:18px;line-height:1;transition:transform .4s var(--ease),background .3s,color .3s,border-color .3s}
+.ai.open .x{transform:rotate(45deg);background:var(--ink);border-color:var(--ink);color:#fff}
+.ab{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.ab>div{overflow:hidden}
+.ab p{color:var(--mut);padding:0 20px 22px 72px;max-width:60ch;font-size:16px}
+.ai.open .ab{grid-template-rows:1fr}
+.cert{display:inline-flex;gap:12px;align-items:center;margin-top:26px;padding:12px 18px;border-radius:99px;background:var(--sun-soft);font-size:15px;font-weight:500}
+.cert::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--sun);flex:none}
+
+/* ---------- richiesta ---------- */
+.req{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,64px);align-items:start}
+.steps{margin-top:40px}
+.steps li{display:grid;grid-template-columns:48px 1fr;gap:16px;padding-bottom:26px;position:relative}
+.steps li b{width:48px;height:48px;border-radius:50%;background:var(--paper);box-shadow:var(--shadow);display:grid;place-items:center;font-family:var(--disp);font-weight:600;font-size:19px;position:relative;z-index:1;transition:background .5s,color .5s}
+.steps li.in b{background:var(--pri);color:#fff}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:23px;top:48px;bottom:0;width:2px;background:var(--pri);transform:scaleY(0);transform-origin:50% 0;transition:transform .9s var(--ease) .3s}
+.steps li.in::after{transform:scaleY(1)}
+.steps h3{font-size:21px;line-height:1.25;letter-spacing:-.025em;margin-top:2px}
+.steps p{color:var(--mut);font-size:16px}
+.voice{margin-top:14px;padding-top:26px;border-top:1px solid var(--line)}
+.voice p{font-size:15px;color:var(--mut);font-weight:500}
+.voice a{display:block;font-family:var(--disp);font-weight:600;letter-spacing:-.035em;font-size:clamp(32px,4vw,52px);line-height:1.15;transition:color .25s}
+.voice a+a{font-size:clamp(18px,1.8vw,22px);letter-spacing:-.02em;color:var(--pri);margin-top:4px}
+.voice a:hover{color:var(--pri)}
+form{background:var(--paper);border-radius:24px;padding:clamp(20px,3vw,36px);box-shadow:0 2px 4px rgba(15,27,36,.05),0 30px 60px -24px rgba(15,27,36,.3)}
+form h3{font-size:24px;line-height:1.2}
+form .hint{color:var(--mut);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 10px;min-height:40px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 6px 6px 14px;min-height:40px;border-radius:99px;background:var(--pri-soft);color:var(--pri);font-size:14px;font-weight:600;animation:pop .4s var(--ease)}
+.chip span{width:26px;height:26px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:15px;line-height:1}
+.empty{color:var(--mut);font-size:15px;padding:8px 0}
+.more{font-size:15px;font-weight:600;color:var(--pri);border-bottom:1.5px solid currentColor;padding-bottom:1px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld.wd{grid-column:1/-1}
+.fld label{font-size:14px;font-weight:600}
+.fld input,.fld textarea{font:inherit;font-size:16px;color:var(--ink);background:#f5f7f8;border:1.5px solid transparent;padding:14px 16px;border-radius:12px;transition:border-color .25s,background .25s,box-shadow .25s;width:100%}
+.fld textarea{min-height:96px;resize:vertical}
+.fld input:focus,.fld textarea:focus{outline:none;border-color:var(--pri);background:#fff;box-shadow:0 0 0 4px rgba(11,79,108,.12)}
+.chk{display:flex;gap:12px;align-items:flex-start;margin:20px 0 22px;color:var(--mut);font-size:15px;line-height:1.45;cursor:pointer}
+.chk input{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;border:1.5px solid var(--mut);border-radius:7px;display:grid;place-items:center;cursor:pointer;transition:background .2s,border-color .2s}
+.chk input:checked{background:var(--pri);border-color:var(--pri)}
+.chk input:checked::after{content:"✓";color:#fff;font-size:15px;font-weight:700;line-height:1}
+form .btn{width:100%}
+.perks{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);display:grid;gap:8px;color:var(--mut);font-size:15px}
+.perks li{display:flex;gap:10px}.perks li::before{content:"✓";color:var(--pri);font-weight:700}
+.sent{display:none;margin-top:16px;padding:14px 18px;border-radius:12px;background:var(--sun-soft);font-size:15px;font-weight:500}
+form.ok .sent{display:block;animation:pop .5s var(--ease)}
+
+.dock{position:fixed;right:20px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:61;display:flex;align-items:center;gap:12px;padding:8px 8px 8px 22px;min-height:56px;border-radius:99px;background:var(--ink);color:#fff;font-size:15px;font-weight:600;box-shadow:0 18px 40px -14px rgba(15,27,36,.6);transform:translateY(160%);transition:transform .6s var(--ease)}
+.dock.on{transform:none}
+.dock b{font-family:var(--disp);font-weight:600;font-size:17px;min-width:40px;height:40px;border-radius:99px;background:var(--sun);color:var(--ink);display:grid;place-items:center}
+.dock.bump b{animation:bump .45s var(--ease)}
+@keyframes bump{40%{transform:scale(1.35)}}
+
+footer{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:wrap;color:var(--mut);font-size:15px;padding:28px var(--pad) calc(96px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+footer a{font-weight:500}footer a:hover{color:var(--pri)}
+
+/* ---------- sistema tipografico e marchio: tre livelli netti ----------
+   1) titoli: Barlow Condensed, grandi e compatti
+   2) titoli di scheda: Inter grassetto
+   3) testi: Inter regolare, colore pieno; il grigio resta solo per le note */
+body{color:var(--text);font-size:17px;line-height:1.65}
+h1,h2{font-family:var(--disp);font-weight:700;letter-spacing:0;color:var(--ink)}
+h1{font-size:clamp(54px,5.5vw,104px);line-height:.98;max-width:none}   /* 5.5vw: la seconda frase sta su una riga sola */
+h1 em{color:var(--pri)}
+h2{font-size:clamp(42px,5vw,74px);line-height:1;max-width:17ch}
+h3,.c-t,.ai .t,form h3,.steps h3{font-family:var(--body);font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.stat strong,.score strong,.voice a,#overlay a,.band div{font-family:var(--disp);font-weight:700;letter-spacing:0}
+.voice a+a{font-family:var(--body);font-weight:600;letter-spacing:-.01em}
+.bigq{font-family:var(--body);font-weight:600;letter-spacing:-.02em;color:var(--ink);font-size:clamp(21px,2.1vw,29px);line-height:1.38}
+.tag{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pri);background:var(--pri-soft);padding:7px 14px 7px 12px;border-radius:99px;margin-bottom:20px}
+.sub,.claim{color:var(--text);font-size:clamp(18px,1.5vw,21px);line-height:1.55;max-width:46ch}
+.hero .claim{max-width:60ch;font-size:clamp(18px,1.5vw,23px)}
+.pn p,.ab p,.steps p,.rev .q{color:var(--text)}
+.pn h3{font-size:clamp(22px,2vw,26px);line-height:1.22;max-width:18ch}
+.pn p{font-size:17px}
+.c-cat{align-self:flex-start;font-size:13px;font-weight:600;color:var(--pri);background:var(--pri-soft);padding:5px 12px;border-radius:99px}
+.c-t{font-size:21px;line-height:1.22;margin-top:14px}
+.c-d{color:var(--text);font-size:16px;line-height:1.5;margin-bottom:18px}
+.c-add{padding-top:14px;border-top:1px solid var(--line);font-size:15px;font-weight:700;color:var(--ink);justify-content:space-between}
+.card[aria-pressed=true] .c-cat{background:#fff}
+.more-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:150px;padding:20px;border:1.5px dashed var(--pri);border-radius:var(--r);background:rgba(255,255,255,.55);text-align:center;transition:background .25s,border-color .25s,transform .4s var(--ease)}
+.more-tile[hidden]{display:none}
+.more-tile b{font-size:20px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:10px}
+.more-tile b::after{content:"+";width:30px;height:30px;border-radius:50%;background:var(--sun);color:var(--ink);display:grid;place-items:center;font-size:19px;line-height:1;transition:transform .4s var(--ease)}
+.more-tile[aria-expanded=true] b::after{content:"−"}
+.more-tile span{font-size:15px;color:var(--mut)}
+.more-tile:hover{background:#fff;border-style:solid}
+.more-tile:hover b::after{transform:rotate(90deg)}
+.btn{background:var(--sun);color:var(--ink);font-weight:700}
+.btn .ar{background:var(--ink);color:var(--sun)}
+.btn:hover{background:#ffc62e;box-shadow:0 14px 30px -12px rgba(247,181,0,.75)}
+.btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.sec:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hcta{background:var(--sun);color:var(--ink);font-weight:700}
+.hcta:hover{background:#ffc62e}
+.logo{display:flex;align-items:center;min-height:44px;font-family:var(--body);font-weight:700;font-size:17px;color:var(--ink)}
+.logo img{display:block;height:23px;width:auto}
+#loader img{height:24px;width:auto}
+.stat strong{color:var(--pri);font-size:clamp(48px,5.4vw,84px);line-height:1}
+.stat p{color:var(--text);font-size:16px}
+.stat.hl{background:var(--ink)}
+.score strong{color:var(--ink)}
+.revs{padding:44px max(var(--pad),calc(50% - min(42vw,230px))) 30px}
+footer .logo img{height:20px}
+@media(min-width:901px){.req>div:first-child{padding-top:min(30vh,250px)}}   /* spazio riservato all'oggetto 3D */
+
+/* ---------- mobile ---------- */
+@media(max-width:900px){
+  body{font-size:16.5px}
+  .hide-m{display:none}
+  .hmenu{display:grid}
+  .hbar{padding-left:18px}
+  .hcta{padding:10px 13px;font-size:14px;white-space:nowrap}
+  .logo{flex:none}
+  .logo img{height:18px}
+  header nav{flex:none}
+  .hero{justify-content:flex-start;padding:calc(45svh + 12px) var(--pad) 56px;min-height:0}
+  .hero-in{max-width:none}
+  h1{font-size:clamp(48px,13.6vw,78px)}
+  h2{font-size:clamp(38px,10.5vw,56px)}
+  .modes{position:absolute;right:auto;left:0;width:100%;bottom:auto;top:calc(45svh - 62px);align-items:center}
+  .modes p{display:none}
+  .seg button{padding:8px 12px;font-size:13px}
+  .scroll{display:none}
+  .cta .btn{flex:1 1 100%}
+  .stats{grid-template-columns:1fr 1fr;gap:10px}
+  .stat{padding:20px 18px 22px}
+  .cat,.two,.two.flip,.req{grid-template-columns:minmax(0,1fr)}
+  .rail{position:static}
+  .two>.stage{display:none}
+  .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(var(--pad)*-1) 12px;padding:0 var(--pad) 6px}
+  .filters::-webkit-scrollbar{display:none}
+  .fl{flex:none}
+  .grid{grid-template-columns:1fr}
+  .card{min-height:0}
+  .c-add{padding-top:18px}
+  .rev-head{grid-template-columns:1fr;max-width:none;gap:22px}
+  .score{justify-self:start}
+  .ab p{padding-left:20px}
+  .ai>button{gap:12px;padding:16px}
+  .fgrid{grid-template-columns:1fr}
+  .dock{left:14px;right:14px;justify-content:space-between}
+  section,.pin-in,.stat,.pn,.rev,.ai,form{backdrop-filter:none}
+}
+@media(max-width:380px){.logo span{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv,.w>span{opacity:1;transform:none;transition:none}.scroll i::after{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div id="labels" aria-hidden="true"><span>Telaio</span><span>Anta</span><span>Vetro esterno</span><span>Canalina</span><span>Vetro interno</span><span>Maniglia</span></div>
+<div id="loader"><div><svg viewBox="0 0 54 72" aria-hidden="true"><rect x="2" y="2" width="50" height="68" rx="3"/><line x1="27" y1="2" x2="27" y2="70"/></svg><img src="assets/logo-ambrosi-partner.png" alt="AmbrosiPartner" width="184" height="24" onerror="this.replaceWith('AmbrosiPartner')"></div></div>
+<div class="prog" id="prog"></div>
+
+<header>
+  <div class="hbar">
+    <a href="#top" class="logo"><img src="assets/logo-ambrosi-partner.png" alt="AmbrosiPartner, Accademia di Formazione per Serramentisti" width="176" height="23" onerror="this.replaceWith('AmbrosiPartner')"></a>
+    <nav>
+      <a href="#corsi" class="hlink hide-m">Corsi</a>
+      <a href="#recensioni" class="hlink hide-m">Recensioni</a>
+      <a href="#team" class="hlink hide-m">Team</a>
+      <a href="tel:0461960286" class="hlink hide-m">0461 960286</a>
+      <a href="#richiesta" class="hcta">Richiedi info</a>
+      <button class="hmenu" id="menuBtn" aria-expanded="false" aria-controls="overlay" aria-label="Apri il menu"><i></i></button>
+    </nav>
+  </div>
+</header>
+
+<div id="overlay">
+  <a href="#perche" data-close>Perché sceglierci <small>01</small></a>
+  <a href="#corsi" data-close>I 21 corsi <small>02</small></a>
+  <a href="#recensioni" data-close>Recensioni <small>03</small></a>
+  <a href="#team" data-close>Il team <small>04</small></a>
+  <a href="#faq" data-close>Domande frequenti <small>05</small></a>
+  <a href="#richiesta" data-close>Richiedi informazioni <small>06</small></a>
+  <a href="tel:0461960286" class="tel" data-close>Chiama 0461 960286</a>
+</div>
+
+<a href="#richiesta" class="dock" id="dock"><span>Vai alla tua richiesta</span><b id="dockN">0</b></a>
+
+<main id="top">
+
+<div class="hero" id="hero">
+  <div class="hero-in">
+    <h1 data-split>Le norme cambiano.<br><em>Tu resti un passo avanti.</em></h1>
+    <p class="claim rv" style="--d:.35s">Corsi pratici su fisco, norme, tecnica e vendita per chi lavora con serramenti, pergole, vetrate e porte. Scegli uno o più corsi e ricevi tutte le informazioni, senza impegno.</p>
+    <div class="cta rv" style="--d:.45s">
+      <a href="#corsi" class="btn mag">Scegli tra i 21 corsi <span class="ar" aria-hidden="true">→</span></a>
+      <a href="#richiesta" class="btn sec">Ricevi le informazioni</a>
+    </div>
+    <p class="note rv" style="--d:.55s">Senza impegno: nessun obbligo di iscrizione.</p>
+  </div>
+  <div class="scroll" aria-hidden="true"><i></i>Scorri</div>
+</div>
+
+<div class="stats" id="stats">
+  <div class="stat rv"><strong data-n="21">0</strong><p>corsi su fisco, norme, tecnica e vendita</p></div>
+  <div class="stat rv" style="--d:.08s"><strong data-n="30" data-s="+">0</strong><p>Più di 30 anni a fianco dei professionisti</p></div>
+  <div class="stat rv" style="--d:.16s"><strong data-n="10000" data-s="+">0</strong><p>Oltre 10.000 professionisti già formati</p></div>
+  <div class="stat hl rv" style="--d:.24s"><strong>5,0 <span class="stars" style="font-size:max(14px,.3em);vertical-align:middle" aria-label="5 stelle su 5">★★★★★</span></strong><p>«5 stelle perché non ce ne sono di più!»</p><cite>MAXPETRA SRL · Corso detrazioni</cite></div>
+</div>
+
+<section class="pin" id="perche">
+  <div class="pin-in">
+    <div class="pin-head">
+      <p class="tag rv">Perché sceglierci</p>
+      <h2 data-split>Perché i serramentisti tornano ogni anno</h2>
+      <p class="sub rv">Le regole cambiano spesso. Chi resta aggiornato lavora sereno, e lo dice chi ha già seguito i corsi.</p>
+    </div>
+    <div class="track" id="track">
+      <article class="pn"><span class="num">01</span><h3>Tutto il tuo lavoro, in un’unica accademia</h3><p>Fisco, norme, tecnica e vendita: dai serramenti alle pergole, dalle VePA alle porte blindate.</p><blockquote>«Corso completo ed esaustivo per rimanere aggiornati e competitivi.»<cite>Falegnameria Due Gi</cite></blockquote></article>
+      <article class="pn"><span class="num">02</span><h3>Il complesso, reso semplice</h3><p>Fisco e norme trasformati in concetti chiari, con suggerimenti che puoi mettere in pratica.</p><blockquote>«Molto chiari nell’esposizione dei temi trattati e molto professionali.»<cite>Egm Serramenti S.r.l.</cite></blockquote></article>
+      <article class="pn"><span class="num">03</span><h3>Le tue domande, in diretta</h3><p>Nei corsi in diretta porti i tuoi casi e il relatore ti risponde.</p><blockquote>«A fine corso si possono fare le domande e il relatore risponde in diretta.»<cite>Masertek srl</cite></blockquote></article>
+      <article class="pn"><span class="num">04</span><h3>Materiali da consultare</h3><p>Materiale didattico curato, da riprendere quando hai un dubbio in cantiere o in ufficio.</p><blockquote>«Preziosi e utilissimi i materiali forniti.»<cite>CETOS S.R.L. Società Benefit</cite></blockquote></article>
+    </div>
+    <div class="pin-bar"><i id="pinBar"></i></div>
+    <p class="swipe">Scorri di lato per leggerli tutti →</p>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"><div id="band1">Fisco<em>●</em>Norme<em>●</em>Tecnica<em>●</em>Vendita<em>●</em>Fisco<em>●</em>Norme<em>●</em>Tecnica<em>●</em>Vendita<em>●</em>Fisco<em>●</em>Norme<em>●</em>Tecnica<em>●</em>Vendita</div></div>
+
+<section id="corsi">
+  <div class="cat">
+    <div class="rail">
+      <p class="tag rv">Il catalogo</p>
+      <h2 data-split>21 corsi. Scegli da dove partire.</h2>
+      <p class="sub rv">Tocca uno o più corsi: li aggiungiamo alla tua richiesta di informazioni.</p>
+    </div>
+    <div>
+      <div class="filters rv" id="filters" role="group" aria-label="Filtra per area"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
+</section>
+
+<section id="recensioni">
+  <div class="rev-head">
+    <div><p class="tag rv">Recensioni</p><h2 data-split>Chi li ha seguiti, li consiglia</h2><p class="sub rv">Recensioni reali, riportate fedelmente. Accanto a ognuna trovi da dove arriva.</p></div>
+    <div class="rv" style="display:grid;gap:14px;justify-items:start">
+      <div class="score"><strong>5,0</strong><div><span class="stars" aria-label="5 stelle su 5">★★★★★</span><p>Voto medio<br>dei corsisti</p></div></div>
+      <div class="cf-nav"><button id="cfP" aria-label="Recensione precedente">←</button><span id="cfN">1 / 6</span><button id="cfX" aria-label="Recensione successiva">→</button></div>
+    </div>
+  </div>
+  <div class="revs" id="revs" tabindex="0" aria-label="Recensioni dei corsisti"></div>
+</section>
+
+<section id="team">
+  <div class="two">
+    <div>
+      <p class="tag rv">Le persone</p>
+      <h2 data-split>Il team dell’Accademia</h2>
+      <p class="sub rv">Esperienza sia in cantiere che nei tavoli tecnici: per questo i corsi parlano la tua lingua.</p>
+      <p class="bigq rv">«Chi rimane aggiornato può stare sereno. Chi non lo fa rimane indietro.»</p>
+      <p class="by rv"><b>Dott. Leonardo Ambrosi</b> · Direttore generale dell’Accademia</p>
+      <div class="acc" id="teamList"></div>
+      <p class="cert rv">L’esperienza di Ambrosi Partner è certificata Partner CasaClima.</p>
+    </div>
+    <div class="stage" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="two flip">
+    <div class="stage" aria-hidden="true"></div>
+    <div>
+      <p class="tag rv">Domande</p>
+      <h2 data-split>Domande frequenti</h2>
+      <div class="acc" id="faqList"></div>
+    </div>
+  </div>
+</section>
+
+<section id="richiesta">
+  <div class="req">
+    <div>
+      <p class="tag rv">La tua richiesta</p>
+      <h2 data-split>Scegli il corso che fa per te</h2>
+      <ol class="steps">
+        <li class="rv"><b>1</b><div><h3>Scegli i corsi</h3><p>Uno o più, tra i 21 disponibili.</p></div></li>
+        <li class="rv"><b>2</b><div><h3>Lascia i tuoi contatti</h3><p>Pochi dati, nessun pagamento.</p></div></li>
+        <li class="rv"><b>3</b><div><h3>Ricevi le informazioni</h3><p>E decidi con calma.</p></div></li>
+      </ol>
+      <div class="voice rv">
+        <p>Preferisci parlarne a voce?</p>
+        <a href="tel:0461960286">0461 960286</a>
+        <a href="mailto:info@ambrosipartner.com">info@ambrosipartner.com</a>
+      </div>
+    </div>
+    <form id="form" class="rv" novalidate>
+      <h3>Quali corsi ti interessano?</h3>
+      <p class="hint">Puoi sceglierne più di uno.</p>
+      <div class="chips" id="chips" aria-live="polite"></div>
+      <a href="#corsi" class="more">+ Scegli tra i 21 corsi</a>
+      <div class="fgrid">
+        <div class="fld"><label for="f-nome">Nome e cognome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+        <div class="fld"><label for="f-az">Azienda</label><input id="f-az" name="azienda" autocomplete="organization"></div>
+        <div class="fld"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" required></div>
+        <div class="fld"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" inputmode="tel" autocomplete="tel"></div>
+        <div class="fld wd"><label for="f-note">Note (facoltative)</label><textarea id="f-note" name="note"></textarea></div>
+      </div>
+      <label class="chk"><input type="checkbox" name="privacy" required><span>Ho letto la privacy policy e acconsento al trattamento dei miei dati per ricevere le informazioni richieste.</span></label>
+      <button class="btn" type="submit">Ricevi le informazioni <span class="ar" aria-hidden="true">→</span></button>
+      <p class="note">Senza impegno: nessun obbligo di iscrizione.</p>
+      <p class="sent" role="status">Richiesta pronta: si è aperta la tua app di posta con il messaggio già compilato. Premi invio per mandarla.</p>
+      <ul class="perks">
+        <li>Ricevi programma e modalità dei corsi scelti</li>
+        <li>Decidi con calma, senza obbligo di iscrizione</li>
+        <li>Puoi chiedere anche per più collaboratori</li>
+      </ul>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><a href="#top" class="logo"><img src="assets/logo-ambrosi-partner.png" alt="AmbrosiPartner" width="153" height="20" loading="lazy" onerror="this.replaceWith('AmbrosiPartner')"></a><span>Partner CasaClima</span><a href="tel:0461960286">0461 960286</a><a href="mailto:info@ambrosipartner.com">info@ambrosipartner.com</a><a href="#top">Torna su ↑</a></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(()=>{
+/* =====================================================================
+   CONTENUTI
+   ===================================================================== */
+const CATS=['Fisco e fatture','Norme e obblighi','Tecnica e prodotto','Vendita e clienti'];
+const C=[ // titolo, descrizione, area
+ ['Legge di Bilancio','Le novità della Legge di Bilancio per chi vende e posa serramenti.',0],
+ ['Fattura Infissi WEB','La fattura corretta con il software Fattura Infissi WEB.',0],
+ ['Fattura corretta','Fattura e documentazione obbligatoria, voce per voce.',0],
+ ['Detrazioni e FAQ','Ecobonus, Bonus Casa e Bonus Sicurezza: regole e casi pratici.',0],
+ ['Conto Termico 3.0','Come funziona il Conto Termico 3.0 per i serramenti.',0],
+ ['Responsabilità fiscali','Le responsabilità del serramentista nelle pratiche fiscali.',0],
+ ['IVA serramenti','Determinare l’aliquota IVA corretta su ogni fornitura.',0],
+ ['Requisiti minimi','Il Decreto Requisiti minimi applicato ai serramenti.',1],
+ ['Gestione RENTRI','Il registro elettronico dei rifiuti: cosa devi fare.',1],
+ ['Diisocianati','La formazione per usare schiume e prodotti con diisocianati.',1],
+ ['Decreto CAM','I Criteri Ambientali Minimi dell’edilizia, applicati ai serramenti.',1],
+ ['Pergole e pergotende','Pergole e pergotende: aspetti urbanistici e fiscali.',1],
+ ['Patente a crediti','La patente a crediti per lavorare nei cantieri.',1],
+ ['Rilievo esecutivo','Il rilievo esecutivo e lo sviluppo dell’ordine.',2],
+ ['VePA','Le vetrate panoramiche amovibili.',2],
+ ['Vetrate isolanti','Conoscere la vetrata isolante e saper vendere la luce.',2],
+ ['Cassonetti','La coibentazione termoacustica dei cassonetti.',2],
+ ['Lead Generation','Aumentare le vendite con la lead generation.',3],
+ ['Contratti e insoluti','Evitare contenziosi, reclami e insoluti.',3],
+ ['Vendite showroom','Vendere finestre in showroom.',3],
+ ['Porte blindate','Vendere porte blindate.',3]
+];
+const REVIEWS=[
+ ['Questo corso lo frequentiamo almeno una volta l’anno visto il cambio di normative […] Bravissimi Leonardo, Mattia e tutto lo Staff. La cosa bella è che a fine corso si possono fare le domande e il relatore risponde in diretta.','Masertek srl','Corso detrazioni'],
+ ['Seguire i Vostri corsi è la marcia in più nel campo del serramento. Grazie!','Quattroper S.n.c.','ambrosipartner.com'],
+ ['E’ da diversi anni che seguo i corsi dell’Accademia Ambrosi, apprezzo molto la chiarezza nell’esporre gli argomenti e il saper tenere alta l’attenzione di chi vi segue. Preziosi e utilissimi i materiali forniti. Grazie','CETOS S.R.L. Società Benefit','Corso detrazioni'],
+ ['Corso completo, con staff professionale molto preparato capace di segnalarci indicazioni fondamentali per la corretta gestione della fornitura e della fatturazione, cosa che non fanno leggi ed istituzioni. 5 stelle perchè non ce ne sono di più !','MAXPETRA SRL','Corso detrazioni'],
+ ['Corso completo ed esaustivo per rimanere aggiornati e competitivi.','Falegnameria Due Gi','ambrosipartner.com'],
+ ['Come sempre l’accademia Ambrosi Partner si dimostra un eccellenza nel settore delle detrazioni per i serramenti e accessori. Insomma un TOP di gamma nel nostro settore.','Tecnoserramenti snc dei F.lli Aloi e c.','Corso detrazioni']
+];
+const TEAM=[
+ ['Direttore generale','Dott. Leonardo Ambrosi','Ha concentrato la sua formazione sul serramento per trasformare gli aspetti tecnici in argomenti di vendita.'],
+ ['Direttore scientifico','Dott. Paolo Ambrosi','Esperto di serramenti ad alta efficienza energetica e docente CasaClima. Autore di guide sul decreto Requisiti minimi e sull’IVA dei serramenti.'],
+ ['Esperienza di posa','William Bisacchi','Serramentista con 36 anni di esperienza, fondatore di Blogbisacchi, uno dei blog sui serramenti più seguiti.'],
+ ['Efficienza energetica','Dott. Gabriele Ambrosi','Ingegnere edile (Politecnico di Milano): segue i servizi di consulenza sull’efficientamento energetico degli edifici.'],
+ ['Tecniche di vendita','Dott. Eliano Cominetti','Formatore comportamentale di venditori: aiuta ciascuno a sviluppare il proprio metodo di vendita.']
+];
+const FAQ=[
+ ['Richiedere informazioni mi impegna a iscrivermi?','No. Ricevi le informazioni sul corso e decidi con calma, senza alcun obbligo di iscrizione.'],
+ ['I corsi sono online o in presenza?','Quasi tutti sono online: in diretta, con le domande al relatore, oppure in video lezione da seguire quando vuoi. La modalità di ogni corso è indicata nelle informazioni che ricevi.'],
+ ['Quanto costa un corso?','Dipende dal corso. Il prezzo arriva insieme a programma e modalità, così valuti tutto prima di decidere.'],
+ ['Posso chiedere informazioni per più collaboratori?','Sì. Valutiamo insieme il percorso adatto alla tua azienda, anche per più persone.'],
+ ['Non so quale corso scegliere. Come faccio?','Scegli quello più vicino al dubbio che hai oggi, oppure chiamaci allo 0461 960286: ti aiutiamo a trovare il corso giusto.']
+];
+const MAIL='info@ambrosipartner.com';
+
+/* =====================================================================
+   UTILITÀ E STATO
+   ===================================================================== */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(reduce)document.body.classList.add('rm');
+const wide=matchMedia('(min-width:901px)'),fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+const lerp=(a,b,t)=>a+(b-a)*t, clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const sstep=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
+const pad=n=>String(n).padStart(2,'0');
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const S={prog:0,intro:reduce?1:0,mx:0,my:0,tmx:0,tmy:0,kick:0,cat:-1,mode:3};   // mode 3: in apertura la finestra è sempre scomposta
+
+/* titoli: una parola alla volta */
+$$('[data-split]').forEach(el=>{let n=0;
+  const wrap=node=>{[...node.childNodes].forEach(ch=>{
+    if(ch.nodeType===3){const f=document.createDocumentFragment();ch.textContent.split(/(\s+)/).forEach(p=>{
+      if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(' '));return}
+      const w=document.createElement('span');w.className='w';const i=document.createElement('span');i.textContent=p;i.style.setProperty('--d',(n++*.05)+'s');w.appendChild(i);f.appendChild(w)});
+      node.replaceChild(f,ch)}
+    else if(ch.nodeType===1)wrap(ch)})};
+  wrap(el);el.classList.add('rvw')});
+
+/* =====================================================================
+   CORSI
+   ===================================================================== */
+const grid=$('#grid'),filters=$('#filters'),sel=new Set();
+grid.innerHTML=C.map((c,i)=>`<button class="card" type="button" aria-pressed="false" data-i="${i}" data-cat="${c[2]}">
+  <span class="c-cat">${esc(CATS[c[2]])}</span>
+  <span class="c-t">${esc(c[0])}</span><span class="c-d">${esc(c[1])}</span>
+  <span class="c-add"><span class="c-lab">Aggiungi alla richiesta</span><i aria-hidden="true">+</i></span></button>`).join('')
+  +'<button class="more-tile" type="button" id="moreBtn" aria-expanded="false"></button>';
+const cards=$$('.card'),moreBtn=$('#moreBtn'),LIMIT=5;let expanded=false;
+// all'inizio si vedono 5 corsi: il resto si apre con "Mostra di più"
+function renderCards(anim){
+  const k=S.cat;let n=0,total=0;
+  cards.forEach(el=>{const match=k<0||+el.dataset.cat===k;if(match)total++;
+    const show=match&&(k>=0||expanded||total<=LIMIT),was=el.hidden;el.hidden=!show;   /* il limite vale solo per "Tutti" */el.classList.remove('pop');
+    if(show&&was&&anim&&!reduce){el.style.setProperty('--d',(n++*.035)+'s');void el.offsetWidth;el.classList.add('pop')}});
+  const extra=total-LIMIT;moreBtn.hidden=k>=0||extra<=0;moreBtn.setAttribute('aria-expanded',expanded);
+  moreBtn.innerHTML=expanded?'<b>Mostra meno</b><span>Torna ai primi '+LIMIT+' corsi</span>':'<b>Mostra di più</b><span>'+(extra===1?'Un altro corso':'Altri '+extra+' corsi')+'</span>';
+  requestAnimationFrame(measure);
+}
+moreBtn.addEventListener('click',()=>{expanded=!expanded;renderCards(true);if(!expanded)$('#corsi').scrollIntoView()});
+filters.innerHTML=`<button class="fl" type="button" aria-pressed="true" data-f="-1">Tutti<sup>${C.length}</sup></button>`+
+  CATS.map((n,k)=>`<button class="fl" type="button" aria-pressed="false" data-f="${k}">${n}<sup>${C.filter(c=>c[2]===k).length}</sup></button>`).join('');
+function applyFilter(k){
+  S.cat=k;expanded=false;$$('.fl').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.f===k));
+  cards.forEach(el=>{el.hidden=true});renderCards(true);
+}
+filters.addEventListener('click',e=>{const b=e.target.closest('.fl');if(b)applyFilter(+b.dataset.f)});
+cards.forEach(el=>el.addEventListener('animationend',()=>el.classList.remove('pop')));
+
+const dock=$('#dock'),dockN=$('#dockN'),chips=$('#chips');
+function syncSel(bump){
+  cards.forEach(el=>{const on=sel.has(+el.dataset.i);el.setAttribute('aria-pressed',on);
+    el.querySelector('.c-lab').textContent=on?'Nella tua richiesta':'Aggiungi alla richiesta';el.querySelector('.c-add i').textContent=on?'✓':'+'});
+  dockN.textContent=sel.size;
+  if(bump){dock.classList.remove('bump');void dock.offsetWidth;dock.classList.add('bump')}
+  chips.innerHTML=sel.size?[...sel].sort((a,b)=>a-b).map(i=>`<button type="button" class="chip" data-i="${i}" aria-label="Rimuovi ${esc(C[i][0])}">${esc(C[i][0])}<span aria-hidden="true">×</span></button>`).join('')
+    :'<span class="empty">Nessun corso selezionato: puoi anche scrivere senza sceglierne uno.</span>';
+}
+grid.addEventListener('click',e=>{const el=e.target.closest('.card');if(!el)return;const i=+el.dataset.i;
+  sel.has(i)?sel.delete(i):sel.add(i);S.kick=1;syncSel(true)});
+chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(b){sel.delete(+b.dataset.i);syncSel(true)}});
+syncSel(false);renderCards(false);
+
+if(fine&&!reduce)cards.forEach(el=>{
+  el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    el.style.setProperty('--ry',((x-.5)*9)+'deg');el.style.setProperty('--rx',((.5-y)*8)+'deg');el.style.setProperty('--mx',x*100+'%');el.style.setProperty('--my',y*100+'%')});
+  el.addEventListener('pointerleave',()=>{el.style.setProperty('--ry','0deg');el.style.setProperty('--rx','0deg')});
+});
+
+/* =====================================================================
+   RECENSIONI: scorrimento laterale nativo (dito, trackpad, frecce)
+   ===================================================================== */
+const revsEl=$('#revs');
+revsEl.innerHTML=REVIEWS.map(r=>`<article class="rev"><span class="stars" aria-label="5 stelle su 5">★★★★★</span><p class="q">«${esc(r[0])}»</p><footer><b>${esc(r[1])}</b><span>Fonte: ${esc(r[2])}</span></footer></article>`).join('');
+const revs=$$('.rev');let revI=0;
+const revStep=()=>revs[1].offsetLeft-revs[0].offsetLeft;
+const revGo=d=>revsEl.scrollBy({left:d*revStep(),behavior:reduce?'auto':'smooth'});
+$('#cfP').onclick=()=>revGo(-1);$('#cfX').onclick=()=>revGo(1);
+revsEl.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'){e.preventDefault();revGo(-1)}if(e.key==='ArrowRight'){e.preventDefault();revGo(1)}});
+function revTick(){
+  const mid=revsEl.getBoundingClientRect().left+revsEl.clientWidth/2;let best=0,bd=1e9;
+  revs.forEach((el,i)=>{const r=el.getBoundingClientRect(),d=(r.left+r.width/2-mid)/r.width,ad=Math.abs(d);if(ad<bd){bd=ad;best=i}
+    if(fine&&!reduce)el.style.transform=`perspective(1100px) rotateY(${clamp(d,-1.5,1.5)*-9}deg) scale(${1-Math.min(ad,1.5)*.05})`});
+  if(best!==revI){revI=best;$('#cfN').textContent=(best+1)+' / '+revs.length}
+}
+
+/* =====================================================================
+   FISARMONICHE: team e domande
+   ===================================================================== */
+$('#teamList').innerHTML=TEAM.map((m,i)=>`<div class="ai rv${i?'':' open'}" style="--d:${i*.06}s"><button type="button" aria-expanded="${!i}" aria-controls="tm${i}"><span class="n">${pad(i+1)}</span><span><span class="role">${esc(m[0])}</span><span class="t">${esc(m[1])}</span></span><span class="x" aria-hidden="true">+</span></button><div class="ab" id="tm${i}"><div><p>${esc(m[2])}</p></div></div></div>`).join('');
+$('#faqList').innerHTML=FAQ.map((f,i)=>`<div class="ai q rv${i?'':' open'}" style="--d:${i*.06}s"><button type="button" aria-expanded="${!i}" aria-controls="fa${i}"><span class="n">${pad(i+1)}</span><span class="t">${esc(f[0])}</span><span class="x" aria-hidden="true">+</span></button><div class="ab" id="fa${i}"><div><p>${esc(f[1])}</p></div></div></div>`).join('');
+$$('.acc').forEach(acc=>acc.addEventListener('click',e=>{const b=e.target.closest('.ai>button');if(!b)return;const it=b.parentElement,o=!it.classList.contains('open');
+  acc.querySelectorAll('.ai.open').forEach(x=>{x.classList.remove('open');x.firstElementChild.setAttribute('aria-expanded',false)});
+  it.classList.toggle('open',o);b.setAttribute('aria-expanded',o);S.kick=.6;setTimeout(measure,560)}));
+
+/* =====================================================================
+   MODULO: compone un'email con i corsi scelti (nessun server)
+   ===================================================================== */
+const form=$('#form');
+form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;
+  const d=new FormData(form),list=[...sel].sort((a,b)=>a-b).map(i=>'- '+C[i][0]);
+  const body=['Buongiorno, vorrei ricevere informazioni sui corsi.','','Corsi di interesse:',list.length?list.join('\n'):'- da definire insieme','',
+    'Nome: '+d.get('nome'),'Azienda: '+(d.get('azienda')||'-'),'Email: '+d.get('email'),'Telefono: '+(d.get('telefono')||'-'),'',d.get('note')||''].join('\n');
+  const a=document.createElement('a');a.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Richiesta informazioni corsi')+'&body='+encodeURIComponent(body);a.click();
+  form.classList.add('ok');S.kick=1});
+
+/* =====================================================================
+   MENU, PUNTATORE, COMPARSE
+   ===================================================================== */
+const ov=$('#overlay'),mb=$('#menuBtn');
+const setMenu=o=>{ov.classList.toggle('open',o);mb.setAttribute('aria-expanded',o);mb.setAttribute('aria-label',o?'Chiudi il menu':'Apri il menu');document.body.style.overflow=o?'hidden':''};
+mb.onclick=()=>setMenu(!ov.classList.contains('open'));
+$$('[data-close]').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&ov.classList.contains('open')){setMenu(false);mb.focus()}});
+wide.addEventListener('change',()=>{setMenu(false);measure()});
+
+addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){S.tmx=e.clientX/innerWidth*2-1;S.tmy=-(e.clientY/innerHeight*2-1)}});
+// su telefono la finestra segue leggermente l'inclinazione dello schermo, se disponibile senza permessi
+addEventListener('deviceorientation',e=>{if(e.gamma==null||fine)return;S.tmx=clamp(e.gamma/35,-1,1);S.tmy=clamp((e.beta-45)/45,-1,1)*-.6});
+
+if(fine&&!reduce)$$('.mag').forEach(b=>{
+  b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.16}px,${(e.clientY-r.top-r.height/2)*.28}px)`});
+  b.addEventListener('pointerleave',()=>{b.style.transform=''});
+});
+
+
+const fmt=n=>n.toLocaleString('it-IT');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.classList.add('in');io.unobserve(el);
+  el.querySelectorAll('[data-n]').forEach(c=>{const t=+c.dataset.n,sf=c.dataset.s||'';if(reduce){c.textContent=fmt(t)+sf;return}
+    const t0=performance.now();const tick=now=>{const p=clamp((now-t0)/1600,0,1),v=Math.round(t*(1-Math.pow(1-p,4)));c.textContent=fmt(v)+(p>=1?sf:'');if(p<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)})}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+const observeAll=()=>$$('.rv:not(.in),.rvw:not(.in)').forEach(e=>{if(!e.closest('.hero'))io.observe(e)});
+observeAll();
+
+/* =====================================================================
+   MISURE DI SCROLL
+   ===================================================================== */
+const SECS=['#top','#perche','#corsi','#recensioni','#team','#faq','#richiesta'].map($);
+const pin=$('#perche'),track=$('#track'),pinBar=$('#pinBar'),band1=$('#band1'),bandEl=$('.band'),progBar=$('#prog');
+let anchors=[0,1,2,3,4,5,6],pinTop=0,pinLen=1,trackMax=0,bandTop=0,pinOn=false;
+function measure(){
+  const top=el=>el.getBoundingClientRect().top+scrollY,vh=innerHeight,max=Math.max(1,document.documentElement.scrollHeight-vh);
+  anchors=SECS.map((el,i)=>i?clamp(top(el)-vh*.3,i,max):0);
+  for(let i=1;i<anchors.length;i++)if(anchors[i]<=anchors[i-1])anchors[i]=anchors[i-1]+1;
+  pinOn=false;   // lo scorrimento agganciato è stato tolto: su schermi piccoli le schede scorrono col dito
+  pinTop=top(pin);pinLen=Math.max(1,pin.offsetHeight-vh);
+  const lastPn=track.lastElementChild;trackMax=Math.max(0,lastPn.offsetLeft+lastPn.offsetWidth-innerWidth*.56);bandTop=top(bandEl);
+}
+function progAt(y){let p=0;for(let i=1;i<anchors.length;i++){const z=Math.min(innerHeight*.4,anchors[i]-anchors[i-1]);   // il cambio parte quando la sezione successiva è al 70% dello schermo
+p+=sstep(0,1,(y-(anchors[i]-z))/z)}return p}
+measure();addEventListener('resize',measure);addEventListener('load',measure);setTimeout(measure,1200);setTimeout(measure,3500);
+
+/* =====================================================================
+   SCENA 3D: una finestra vera, materiali fisici, ombre morbide
+   ===================================================================== */
+// pose per sezione: rotazione, posizione, scala, apertura anta dx/sx, ribalta, esplosione
+const POSE=[
+ {ry:-.52,rx:.05,x:2.75,y:-.05,s:1,   o:.5, ol:0,  t:0,  e:0},   // hero
+ {ry:.62, rx:.2, x:3.1, y:.95, s:.58, o:0,  ol:0,  t:0,  e:0},   // perché: pergola, accanto al titolo
+ {ry:.5,  rx:.16,x:-3.35,y:-1.25,s:.58,o:0,  ol:0,  t:0,  e:0},   // corsi: un oggetto per area
+ {ry:0,   rx:.1, x:3.2, y:.75, s:.66, o:0,  ol:0,  t:0,  e:0},   // recensioni: stelle
+ {ry:-.2, rx:.1, x:3.15,y:0,   s:.9,  o:0,  ol:0,  t:0,  e:0},   // team: tocco
+ {ry:.3,  rx:.05,x:-3.2,y:0,   s:.9,  o:0,  ol:0,  t:0,  e:0},   // domande: punto interrogativo
+ {ry:.3,  rx:.08,x:-3.3,y:1.2, s:.5,  o:0,  ol:0,  t:0,  e:0}    // richiesta: busta, nello spazio sopra il titolo
+];
+const MODE=[{},{o:1.35,ol:1.15},{o:0,t:.3},{o:0,e:1,ry:-.85}];
+const CATP=[{},{},{ry:.25},{e:1,ry:.95,s:.5},{ry:.55}]; // [tutti, fisco, norme, tecnica, vendita]
+const KEYS=['ry','rx','x','y','s','o','ol','t','e'];
+const cur=Object.assign({},POSE[0]);
+
+let R=null;
+function initGL(){
+  if(!window.THREE)return null;
+  const canvas=$('#gl'),small=innerWidth<800;
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:'high-performance'});
+  const dpr=Math.min(devicePixelRatio||1,small?1.75:2);renderer.setPixelRatio(dpr);renderer.setClearColor(0,0);
+  renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(35,1,.1,60);cam.position.set(0,0,9);
+
+  /* ambiente per i riflessi: uno studio luminoso generato al volo */
+  const envS=new THREE.Scene();
+  envS.add(new THREE.Mesh(new THREE.SphereGeometry(20,24,12),new THREE.MeshBasicMaterial({color:0xc9d3d8,side:THREE.BackSide})));
+  const panel=(r,g,b,w,h,px,py,pz)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:new THREE.Color(r,g,b),side:THREE.DoubleSide}));m.position.set(px,py,pz);m.lookAt(0,0,0);envS.add(m)};
+  panel(7,7,7,12,12,0,10,2);panel(6,4.6,3,8,10,-11,3,3);panel(2.4,2.8,3.2,10,8,9,2,7);panel(1.5,1.5,1.5,14,6,0,-1,-12);
+  const pm=new THREE.PMREMGenerator(renderer);scene.environment=pm.fromScene(envS,.035).texture;pm.dispose();
+
+  /* luci */
+  scene.add(new THREE.HemisphereLight(0xffffff,0xd8d2c6,.5));
+  const sun=new THREE.DirectionalLight(0xfff1dc,1.55);sun.castShadow=true;
+  sun.shadow.mapSize.set(small?1024:2048,small?1024:2048);sun.shadow.bias=-.0004;sun.shadow.normalBias=.02;sun.shadow.radius=5;
+  const sc=sun.shadow.camera;sc.left=-5;sc.right=5;sc.top=5;sc.bottom=-5;sc.near=.5;sc.far=22;
+  scene.add(sun,sun.target);
+  const fill=new THREE.DirectionalLight(0xdcebf5,.45);scene.add(fill,fill.target);
+
+  /* materiali */
+  const col=h=>new THREE.Color(h).convertSRGBToLinear();   // i colori sono scritti come si vedono a schermo
+  const M={
+    frame:new THREE.MeshStandardMaterial({color:col(0x0d3b54),roughness:.5,metalness:.1,envMapIntensity:.45}),
+    sash:new THREE.MeshStandardMaterial({color:col(0x14506e),roughness:.46,metalness:.1,envMapIntensity:.45}),
+    navy:new THREE.MeshStandardMaterial({color:col(0x0d3b54),roughness:.5,metalness:.05,envMapIntensity:.45}),
+    pri:new THREE.MeshStandardMaterial({color:col(0x00679a),roughness:.35,metalness:.05,envMapIntensity:.6}),
+    cyan:new THREE.MeshStandardMaterial({color:col(0x0095c8),roughness:.4,metalness:.05,envMapIntensity:.6}),
+    sky:new THREE.MeshStandardMaterial({color:col(0x8fcbe6),roughness:.45,metalness:0,envMapIntensity:.5}),
+    white:new THREE.MeshStandardMaterial({color:col(0xf3f7fa),roughness:.5,metalness:0,envMapIntensity:.4}),
+    paper:new THREE.MeshStandardMaterial({color:col(0xffffff),roughness:.7,metalness:0,envMapIntensity:.3}),
+    line:new THREE.MeshStandardMaterial({color:col(0xb4c8d4),roughness:.7,metalness:0,envMapIntensity:.3}),
+    gold:new THREE.MeshStandardMaterial({color:col(0xf7b500),roughness:.3,metalness:.35,envMapIntensity:.9}),
+    wood:new THREE.MeshStandardMaterial({color:col(0xd3b991),roughness:.75,metalness:0,envMapIntensity:.3}),
+    glass:new THREE.MeshPhysicalMaterial({color:col(0x8fcbe6),roughness:.03,metalness:0,transparent:true,opacity:.24,envMapIntensity:.9,clearcoat:1,clearcoatRoughness:.02,side:THREE.DoubleSide,depthWrite:false}),
+    alu:new THREE.MeshStandardMaterial({color:col(0xcfd4d8),roughness:.28,metalness:.95}),
+    steel:new THREE.MeshStandardMaterial({color:col(0xe9ecee),roughness:.2,metalness:1}),
+    stone:new THREE.MeshStandardMaterial({color:col(0xf1ede4),roughness:.85,metalness:0,envMapIntensity:.4}),
+    seal:new THREE.MeshStandardMaterial({color:col(0x12161a),roughness:.8})
+  };
+  const sh=m=>{m.castShadow=true;m.receiveShadow=true;return m};
+  // cornice rettangolare con spigoli smussati
+  function ring(w,h,p,d,mat,b=.014){
+    const s=new THREE.Shape();s.moveTo(-w/2,-h/2);s.lineTo(w/2,-h/2);s.lineTo(w/2,h/2);s.lineTo(-w/2,h/2);s.closePath();
+    const o=new THREE.Path();o.moveTo(-w/2+p,-h/2+p);o.lineTo(-w/2+p,h/2-p);o.lineTo(w/2-p,h/2-p);o.lineTo(w/2-p,-h/2+p);o.closePath();s.holes.push(o);
+    const g=new THREE.ExtrudeGeometry(s,{depth:d-2*b,bevelEnabled:true,bevelThickness:b,bevelSize:b,bevelSegments:3,curveSegments:1});g.translate(0,0,-(d-2*b)/2);
+    return sh(new THREE.Mesh(g,mat));
+  }
+
+  /* la finestra */
+  const W=2.4,H=3.2,fp=.15,fd=.26,sw=(W-2*fp)/2,shh=H-2*fp,sp=.115,sd=.18;
+  const rig=new THREE.Group();scene.add(rig);
+  const win=new THREE.Group();rig.add(win);
+  const frame=ring(W,H,fp,fd,M.frame,.018);win.add(frame);
+  const sill=sh(new THREE.Mesh(new THREE.BoxGeometry(W+.5,.09,.62),M.stone));sill.position.set(0,-H/2-.045,.1);win.add(sill);
+  const anchors3=[];const anchor=(parent,x,y,z)=>{const o=new THREE.Object3D();o.position.set(x,y,z);parent.add(o);anchors3.push(o);return o};
+  anchor(frame,W/2-.05,-H*.3,0);
+  function sash(sign){
+    const hinge=new THREE.Group();hinge.position.set(sign*(W/2-fp),0,0);win.add(hinge);
+    const tilt=new THREE.Group();tilt.position.set(0,-shh/2,0);hinge.add(tilt);
+    const body=new THREE.Group();body.position.set(-sign*sw/2,shh/2,0);tilt.add(body);
+    const prof=ring(sw-.012,shh-.012,sp,sd,M.sash);body.add(prof);
+    const gw=sw-2*sp+.03,gh=shh-2*sp+.03;
+    const pane=()=>{const m=new THREE.Mesh(new THREE.BoxGeometry(gw,gh,.014),M.glass);m.renderOrder=2;return m};
+    const pA=pane(),pB=pane(),spc=ring(gw-.02,gh-.02,.022,.05,M.alu,.004);spc.castShadow=false;
+    const seal=ring(gw+.02,gh+.02,.02,.03,M.seal,.004);seal.castShadow=false;seal.position.z=.062;
+    body.add(pA,pB,spc,seal);
+    return{hinge,tilt,body,prof,pA,pB,spc,seal};
+  }
+  const sR=sash(1),sL=sash(-1);
+  // maniglia sull'anta destra
+  const handle=new THREE.Group();handle.position.set(-sw/2+sp/2,0,sd/2+.012);sR.body.add(handle);
+  const hBase=sh(new THREE.Mesh(new THREE.BoxGeometry(.04,.16,.02),M.steel));handle.add(hBase);
+  const lever=new THREE.Group();handle.add(lever);
+  const neck=sh(new THREE.Mesh(new THREE.CylinderGeometry(.014,.014,.05,16),M.steel));neck.rotation.x=Math.PI/2;neck.position.z=.03;lever.add(neck);
+  const grip=sh(new THREE.Mesh(new THREE.CylinderGeometry(.014,.016,.24,16),M.steel));grip.position.set(0,-.1,.055);lever.add(grip);
+  anchor(sR.prof,sw/2-.06,shh*.28,0);anchor(sR.pA,0,-shh*.1,0);anchor(sR.spc,0,shh/2-sp-.02,0);anchor(sR.pB,0,-shh*.3,0);anchor(handle,0,-.1,.06);
+
+  /* pavimento che riceve solo l'ombra */
+  const floor=new THREE.Mesh(new THREE.PlaneGeometry(26,26),new THREE.ShadowMaterial({opacity:.17}));
+  floor.rotation.x=-Math.PI/2;floor.position.y=-H/2-.09;floor.receiveShadow=true;rig.add(floor);
+
+  /* ---------------------------------------------------------------
+     Gli altri oggetti: uno per sezione, costruiti con forme semplici
+     --------------------------------------------------------------- */
+  const B=(w,h,d)=>new THREE.BoxGeometry(w,h,d),V=(x,y,z)=>new THREE.Vector3(x,y,z);
+  const add=(par,geo,mat,x=0,y=0,z=0)=>{const m=sh(new THREE.Mesh(geo,mat));m.position.set(x,y,z);par.add(m);return m};
+  function rbox(w,h,d,r=.05){   // lastra con angoli arrotondati
+    const s=new THREE.Shape(),x=-w/2,y=-h/2;s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);
+    const b=Math.min(.015,d/4),g=new THREE.ExtrudeGeometry(s,{depth:d-2*b,bevelEnabled:true,bevelThickness:b,bevelSize:b,bevelSegments:2,curveSegments:6});g.translate(0,0,-(d-2*b)/2);return g}
+  const OBJ=[{g:win,k:1,upd(){}}],OW=new Float32Array(10);OW[0]=1;let lastT=0;
+  const group=(k=1)=>{const g=new THREE.Group();g.visible=false;rig.add(g);OBJ.push({g,k,upd(){}});return g};
+  const onUpd=f=>{OBJ[OBJ.length-1].upd=f};
+  // sezione → oggetto (nel catalogo dipende dall'area scelta)
+  const slotObj=k=>k===0?0:k===1?1:k===2?[2,3,4,0,5][S.cat+1]:k+3;
+
+  // 1 — pergola bioclimatica con lamelle orientabili
+  {const g=group(1),lv=[];
+   for(const sx of[-1,1])for(const sz of[-1,1])add(g,rbox(.14,2.5,.14,.02),M.navy,sx*1.43,-.05,sz*1.03);
+   for(const sz of[-1,1])add(g,B(3,.2,.14),M.navy,0,1.2,sz*1.03);
+   for(const sx of[-1,1])add(g,B(.14,.2,2.2),M.navy,sx*1.43,1.2,0);
+   for(let i=0;i<10;i++)lv.push(add(g,B(.25,.03,1.92),M.white,-1.17+i*.26,1.2,0));
+   add(g,B(3.4,.08,2.6),M.wood,0,-1.34,0);
+   onUpd(t=>{const a=(Math.sin(t*.7)*.5+.5)*1.15;lv.forEach(l=>{l.rotation.z=a})})}
+  // 2 — catalogo: pila di manuali
+  {const g=group(1.25);
+   [[M.navy,-.42,-.12],[M.cyan,-.02,.1],[M.gold,.38,-.05]].forEach(([m,y,r])=>{const b=new THREE.Group();b.position.y=y;b.rotation.y=r;g.add(b);
+     add(b,B(2,.3,1.4),M.paper,.03,0,0);add(b,B(2.08,.04,1.48),m,0,.17,0);add(b,B(2.08,.04,1.48),m,0,-.17,0);add(b,B(.05,.38,1.48),m,-1.02,0,0)});
+   onUpd(t=>{g.position.y=Math.sin(t*1.1)*.04})}
+  // 3 — fisco: fattura e monete
+  {const g=group(1),sheet=new THREE.Group();sheet.rotation.x=-.16;g.add(sheet);
+   add(sheet,rbox(1.9,2.6,.05,.08),M.paper);add(sheet,B(.8,.16,.02),M.cyan,-.35,.95,.04);
+   for(let i=0;i<5;i++)add(sheet,B(i%2?1.1:1.4,.07,.02),M.line,i%2?-.2:-.05,.5-i*.26,.04);
+   add(sheet,B(.6,.2,.02),M.gold,.45,-.95,.04);
+   for(let i=0;i<3;i++)add(g,new THREE.CylinderGeometry(.34,.34,.1,36),M.gold,1.02+(i%2)*.05,-1.25+i*.105,.6);
+   const spin=new THREE.Group();spin.position.set(1.05,-.52,.6);g.add(spin);const coin=add(spin,new THREE.CylinderGeometry(.34,.34,.1,36),M.gold);coin.rotation.x=Math.PI/2;
+   onUpd(t=>{spin.rotation.y=t*1.6;spin.position.y=-.52+Math.sin(t*1.8)*.08})}
+  // 4 — norme: scudo con spunta
+  {const g=group(1.05),s=new THREE.Shape();s.moveTo(0,1.5);s.quadraticCurveTo(.6,1.2,1.2,1.15);s.lineTo(1.2,-.1);s.quadraticCurveTo(1.1,-1,0,-1.55);s.quadraticCurveTo(-1.1,-1,-1.2,-.1);s.lineTo(-1.2,1.15);s.quadraticCurveTo(-.6,1.2,0,1.5);
+   const ex=d=>{const q=new THREE.ExtrudeGeometry(s,{depth:d,bevelEnabled:true,bevelThickness:.05,bevelSize:.05,bevelSegments:3,curveSegments:16});q.translate(0,0,-d/2);return q};
+   add(g,ex(.2),M.navy);const inner=add(g,ex(.2),M.pri,0,0,.08);inner.scale.set(.8,.8,1);
+   const c1=add(g,B(.62,.2,.1),M.gold,-.4,-.2,.27);c1.rotation.z=-.84;const c2=add(g,B(1.22,.2,.1),M.gold,.2,.07,.27);c2.rotation.z=.84;
+   onUpd(t=>{g.position.y=Math.sin(t*1.1)*.05})}
+  // 5 — vendita: grafico in crescita
+  {const g=group(1),hs=[.7,1.2,1.7,2.3],ms=[M.sky,M.cyan,M.pri,M.navy],bars=[];
+   add(g,B(3.1,.1,1.1),M.white,0,-1.3,0);
+   hs.forEach((h,i)=>bars.push(add(g,rbox(.5,h,.5,.06),ms[i],-1.05+i*.7,-1.25+h/2,0)));
+   add(g,new THREE.TubeGeometry(new THREE.CatmullRomCurve3([V(-1.35,-.3,.45),V(-.6,.4,.45),V(.05,.25,.45),V(1,1.5,.45)]),40,.055,12,false),M.gold);
+   const tip=add(g,new THREE.ConeGeometry(.15,.34,20),M.gold,1.08,1.62,.45);tip.rotation.z=-.65;
+   onUpd(t=>{bars.forEach((b,i)=>{const k=.86+.14*Math.sin(t*1.3+i*.9);b.scale.y=k;b.position.y=-1.25+hs[i]*k/2})})}
+  // 6 — recensioni: cinque stelle attorno a una grande
+  {const star=R0=>{const s=new THREE.Shape();for(let k=0;k<10;k++){const r=k%2?R0*.42:R0,a=Math.PI/2+k*Math.PI/5;k?s.lineTo(Math.cos(a)*r,Math.sin(a)*r):s.moveTo(Math.cos(a)*r,Math.sin(a)*r)}s.closePath();
+     const q=new THREE.ExtrudeGeometry(s,{depth:R0*.3,bevelEnabled:true,bevelThickness:R0*.08,bevelSize:R0*.06,bevelSegments:3});q.translate(0,0,-R0*.15);return q};
+   const g=group(1),ringG=new THREE.Group(),sm=[];ringG.rotation.x=.28;g.add(ringG);const big=add(g,star(.85),M.gold);
+   for(let i=0;i<5;i++){const a=i/5*6.283,m=add(ringG,star(.32),M.gold,Math.cos(a)*1.6,0,Math.sin(a)*1.6);m.rotation.y=-a+Math.PI/2;sm.push(m)}
+   onUpd(t=>{ringG.rotation.y=t*.5;big.rotation.y=Math.sin(t*.8)*.55;sm.forEach((m,i)=>{m.position.y=Math.sin(t*1.5+i*1.25)*.18})})}
+  // 7 — team: tocco accademico
+  {const g=group(1),c=new THREE.Group();c.rotation.set(.32,.6,.12);g.add(c);
+   const board=add(c,rbox(2.5,2.5,.12,.08),M.navy,0,.35,0);board.rotation.x=Math.PI/2;
+   add(c,new THREE.CylinderGeometry(.85,.9,.65,48),M.pri,0,-.02,0);add(c,new THREE.CylinderGeometry(.1,.1,.06,24),M.gold,0,.44,0);
+   add(c,B(1.2,.035,.035),M.gold,.6,.43,0);
+   const hang=new THREE.Group();hang.position.set(1.2,.43,0);c.add(hang);add(hang,B(.035,.8,.035),M.gold,0,-.4,0);add(hang,new THREE.CylinderGeometry(.05,.1,.32,16),M.gold,0,-.92,0);
+   onUpd(t=>{hang.rotation.z=Math.sin(t*1.6)*.22;hang.rotation.x=Math.cos(t*1.3)*.12;g.position.y=Math.sin(t*.9)*.05})}
+  // 8 — domande: punto interrogativo
+  {const g=group(1),pts=[[-.6,.85],[-.55,1.4],[0,1.75],[.6,1.4],[.6,.9],[.15,.4],[0,0],[0,-.3]].map(p=>V(p[0],p[1],0));
+   add(g,new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),64,.21,20,false),M.pri);
+   add(g,new THREE.SphereGeometry(.21,24,16),M.pri,-.6,.85,0);add(g,new THREE.SphereGeometry(.21,24,16),M.pri,0,-.3,0);
+   const dot=add(g,new THREE.SphereGeometry(.29,32,20),M.gold,0,-1,0);
+   onUpd(t=>{dot.position.y=-1+Math.abs(Math.sin(t*2))*.2})}
+  // 9 — richiesta: busta che si apre e lascia uscire la lettera
+  // strati dal fondo al davanti: aletta aperta (-.11) · retro (-.06) · lettera (.012) · tasca (.03–.07) · aletta chiusa (.08)
+  {const g=group(1);add(g,rbox(2.7,1.8,.08,.08),M.navy,0,0,-.06);
+   const letter=new THREE.Group();letter.position.z=.012;g.add(letter);add(letter,rbox(2.3,1.5,.02,.05),M.paper);
+   for(let i=0;i<4;i++)add(letter,B(i%2?1.2:1.6,.07,.006),M.line,i%2?-.3:-.1,.45-i*.22,.012);
+   const pk=new THREE.Shape();pk.moveTo(-1.35,-.9);pk.lineTo(1.35,-.9);pk.lineTo(1.35,.9);pk.lineTo(0,-.1);pk.lineTo(-1.35,.9);pk.closePath();
+   add(g,new THREE.ExtrudeGeometry(pk,{depth:.04,bevelEnabled:false}),M.cyan,0,0,.03);
+   const fs=new THREE.Shape();fs.moveTo(-1.35,0);fs.lineTo(1.35,0);fs.lineTo(0,-1);fs.closePath();
+   const flapGeo=new THREE.ExtrudeGeometry(fs,{depth:.03,bevelEnabled:false});
+   // l'aletta ruota in avanti; a metà corsa passa dietro, così da aperta sta alle spalle della lettera
+   const flapF=new THREE.Group();flapF.position.set(0,.9,.08);g.add(flapF);add(flapF,flapGeo,M.pri);
+   const seal=add(flapF,new THREE.CylinderGeometry(.16,.16,.05,28),M.gold,0,-.72,.05);seal.rotation.x=Math.PI/2;
+   const flapB=new THREE.Group();flapB.position.set(0,.9,-.11);g.add(flapB);add(flapB,flapGeo,M.pri);
+   // prima si apre del tutto l'aletta, poi esce la lettera (e al contrario in chiusura)
+   onUpd(t=>{const u=Math.sin(t*.8)*.5+.5,a=sstep(.08,.5,u)*Math.PI,half=a<Math.PI/2;
+     flapF.visible=half;flapB.visible=!half;flapF.rotation.x=-a;flapB.rotation.x=-a;letter.position.y=sstep(.55,.95,u)*.9})}
+
+  function size(){const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+  size();addEventListener('resize',size);
+
+  const labels=$$('#labels span'),labelBox=$('#labels'),v=new THREE.Vector3();
+  const side=[1,1,1,-1,1,1];
+  return{render(t,p,intro){
+    const asp=clamp((cam.aspect-.75)/.75,0,1),ie=1-Math.pow(1-intro,3);
+    const s=p.s*lerp(.6,1,asp)*lerp(.82,1,ie);
+    rig.position.set(p.x*asp,lerp(1.3,p.y,asp)-(1-ie)*.5+Math.sin(t*.7)*.03,0);
+    floor.position.y=(-H/2-.09)*s;
+    // quale oggetto mostrare: quello che esce si rimpicciolisce, poi entra il successivo
+    const sg=Math.min(Math.floor(S.prog),5),sf=S.prog-sg,tw=[0,0,0,0,0,0,0,0,0,0];
+    tw[slotObj(sg)]+=1-sstep(.2,.5,sf);tw[slotObj(sg+1)]+=sstep(.5,.8,sf);
+    const dtt=Math.min(.05,t-(lastT||t));lastT=t;
+    const ry=p.ry+S.mx*.22+(1-ie)*1.1+Math.sin(t*.35)*.03,rx=p.rx-S.my*.1,popK=1+S.kick*Math.sin(S.kick*9)*.035;
+    OBJ.forEach((o,i)=>{const tg=Math.min(1,tw[i]);OW[i]+=(tg-OW[i])*(1-Math.exp(-dtt*(tg>OW[i]?5:12)));
+      const w=OW[i],ew=w*w*(3-2*w);o.g.visible=ew>.003;if(!o.g.visible)return;
+      o.g.scale.setScalar(Math.max(.001,s*ew*o.k*(i?popK:1)));o.g.rotation.set(rx,ry+(1-ew)*(i%2?1.3:-1.3),0);o.upd(t)});
+    const k=S.kick*Math.sin(S.kick*9)*.12;
+    sR.hinge.rotation.y=p.o+k;sL.hinge.rotation.y=-p.ol-k*.6;
+    sR.tilt.rotation.x=p.t;
+    lever.rotation.z=clamp(p.o*2.2+p.t*4+p.e*2,0,1)*Math.PI/2;
+    // esplosione lungo l'asse della finestra
+    const e=p.e;frame.position.z=-e*.95;sill.position.z=.1-e*.95;
+    for(const q of [sR,sL]){q.pA.position.z=.034+e*.6;q.seal.position.z=.062+e*.34;q.spc.position.z=e*1.02;q.pB.position.z=-.034+e*1.5}
+    handle.position.z=sd/2+.012+e*2;
+    win.position.z=-e*.45*s;
+    // sole: si sposta lungo la pagina, come nell'arco di una giornata
+    const az=lerp(-.75,.85,clamp(S.prog/6,0,1)),el=lerp(5.2,3.4,clamp(S.prog/6,0,1));
+    sun.position.set(rig.position.x+Math.sin(az)*5.5,rig.position.y+el,5+Math.cos(az)*1.5);sun.target.position.copy(rig.position);
+    sun.color.setRGB(1,lerp(.96,.87,S.prog/6),lerp(.88,.7,S.prog/6));
+    fill.position.set(rig.position.x-4,2,6);fill.target.position.copy(rig.position);
+    renderer.render(scene,cam);
+    // etichette della vista esplosa
+    const show=sstep(.6,.92,e)*(s>.78?1:0)*(asp>.5?1:0)*(OW[0]>.9?1:0);labelBox.style.opacity=show;
+    if(show>.01){const w=innerWidth,h=innerHeight;anchors3.forEach((o,i)=>{v.setFromMatrixPosition(o.matrixWorld).project(cam);
+      const x=(v.x*.5+.5)*w,y=(-v.y*.5+.5)*h,el=labels[i];
+      el.style.transform=`translate(${side[i]>0?x+14:x-14}px,${y}px) translate(${side[i]>0?'0':'-100%'},-50%)`})}
+  }};
+}
+try{R=initGL()}catch(err){console.warn('WebGL non disponibile',err)}
+if(!R)document.body.classList.add('nogl');
+
+/* =====================================================================
+   CICLO PRINCIPALE
+   ===================================================================== */
+const canvas=$('#gl'),tgt={};
+const BG=[[234,241,246],[241,245,248],[226,238,246]];
+let loadT=null,introT=null,loaded=false,last=performance.now(),lastBg='';
+function loop(now){
+  const t=now/1000,dt=Math.min(.05,(now-last)/1000);last=now;
+  if(!loaded){
+    if(loadT===null)loadT=t;
+    if(t-loadT>(reduce?.1:1.5)&&(document.fonts?document.fonts.status==='loaded'||t-loadT>3.5:true)){
+      loaded=true;introT=t;$('#loader').classList.add('done');$$('.hero .rv,.hero .rvw').forEach(e=>e.classList.add('in'))}
+  }else if(S.intro<1){S.intro=clamp((t-introT)/2.2,0,1)}
+
+  const y=scrollY,max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+  S.prog=lerp(S.prog,progAt(y),1-Math.pow(.0015,dt));
+  progBar.style.transform='scaleX('+clamp(y/max,0,1)+')';
+  dock.classList.toggle('on',sel.size>0&&S.prog<5.5&&(wide.matches||S.prog>.5));   // non copre i bottoni d'apertura né il modulo
+
+  // colore di fondo: dal mattino freddo al tardo pomeriggio caldo
+  const bp=clamp(S.prog/6,0,1)*2,bi=Math.min(1,Math.floor(bp)),bf=bp-bi,bg='rgb('+BG[bi].map((c,k)=>Math.round(lerp(c,BG[bi+1][k],bf))).join(',')+')';
+  if(bg!==lastBg){lastBg=bg;document.documentElement.style.setProperty('--bgc',bg)}
+
+  // sezione orizzontale agganciata (solo schermi larghi) e fascia
+  if(pinOn){const pp=clamp((y-pinTop)/pinLen,0,1);track.style.transform='translate3d('+(-pp*trackMax)+'px,0,0)';pinBar.style.transform='scaleX('+pp+')'}
+  if(!reduce)band1.style.transform='translate3d('+(-((y-bandTop+innerHeight)*.3)-40)+'px,0,0)';
+  if(Math.abs(S.prog-3)<1.2)revTick();
+
+  // posa della finestra: fusione tra le sezioni vicine, poi inseguimento morbido
+  const seg=Math.min(Math.floor(S.prog),POSE.length-2),f=S.prog-seg;
+  const slot=k=>k===0?Object.assign({},POSE[0],MODE[S.mode]):k===2?Object.assign({},POSE[2],CATP[S.cat+1]):POSE[k];
+  const a=slot(seg),b=slot(seg+1),kk=1-Math.exp(-dt*(reduce?30:4.2));
+  for(const key of KEYS){tgt[key]=lerp(a[key],b[key],f);cur[key]+=(tgt[key]-cur[key])*kk}
+  S.mx=lerp(S.mx,S.tmx,.05);S.my=lerp(S.my,S.tmy,.05);S.kick=Math.max(0,S.kick-dt*1.6);
+  // su schermi stretti, dopo l'apertura, la finestra resta come filigrana dietro ai contenuti
+  const narrow=1-clamp((innerWidth/innerHeight-.75)/.75,0,1);
+  // …e già nell'apertura si attenua appena si scorre, così il testo che le passa sopra resta leggibile
+  canvas.style.opacity=1-narrow*.86*Math.max(sstep(.12,.75,S.prog),sstep(8,innerHeight*.22,y));
+  if(R)R.render(t,cur,S.intro);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
